@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoopBuddy.WebApi", "PoopBud
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoopBuddy.Web", "PoopBuddy.Web\PoopBuddy.Web.csproj", "{9368352B-75F5-4950-AFCA-FC3BAA3629BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoopBuddy.Data", "PoopBuddy.Data\PoopBuddy.Data.csproj", "{33D02C42-C0FD-4FEB-AF2C-1BB6DE023868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoopBuddy.Data", "PoopBuddy.Data\PoopBuddy.Data.csproj", "{33D02C42-C0FD-4FEB-AF2C-1BB6DE023868}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{BF13767D-13BA-4EE6-ACC1-53B7870AE018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E09A692-0615-4C75-B456-5818DC2F7B77} = {BF13767D-13BA-4EE6-ACC1-53B7870AE018}
+		{33D02C42-C0FD-4FEB-AF2C-1BB6DE023868} = {BF13767D-13BA-4EE6-ACC1-53B7870AE018}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E4C5CE1-72C2-4CE7-BBF3-DFE0336DAFE3}
