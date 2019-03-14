@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PoopBuddy.Data.Entity;
 using PoopBuddy.Data.Repository;
+using PoopBuddy.WebApi.Model;
 
 namespace PoopBuddy.WebApi.Controllers
 {
@@ -22,12 +20,22 @@ namespace PoopBuddy.WebApi.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public ActionResult<IEnumerable<string>> GetAll()
+        public ActionResult<GetAllPoopingsResponse> GetAll()
         {
             var poopings = poopingRepository.GetAll();
-            var poopingTitles = poopings.Select(p => p.PoopingTitle).ToArray();
+            var poopingDtoList = poopings.Select(pooping => new PoopingDto
+                {
+                    PoopingTitle = pooping.PoopingTitle,
+                    Duration = pooping.Duration,
+                    Earning = pooping.Earning
+                })
+                .ToList();
 
-            return poopingTitles;
+            var getAllPoopingsResponse = new GetAllPoopingsResponse
+            {
+                Poopings = poopingDtoList
+            };
+            return getAllPoopingsResponse;
         }
 
         [HttpGet]
