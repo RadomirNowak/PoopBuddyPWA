@@ -1,0 +1,28 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    .title-container {
+
+      .title {
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction:column;
+      width: 100%;
+    }
+  }
+}
