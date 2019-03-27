@@ -1,5 +1,18 @@
-<mat-toolbar color="primary">
-  <span>PoopBuddy</span>
-</mat-toolbar>
+<div>
+  <mat-toolbar color="primary">
+    <span>PoopBuddy</span>
+  </mat-toolbar>
+</div>
 
-<router-outlet></router-outlet>
+<div>
+  
+  <h1 style="text-align: center">To start pooping press below button</h1>
+
+  <div style="display: flex; justify-content: center; align-items: center">
+    <button mat-fab aria-label="Start pooping button" layout-align="center center">
+      <mat-icon>favorite</mat-icon>
+    </button>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
