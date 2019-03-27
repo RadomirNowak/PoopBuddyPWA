@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,7 +13,7 @@ namespace PoopBuddy.Web
         {
             services.AddMvc();
 
-            services.AddSpaStaticFiles(config => { config.RootPath = "poopbuddy/dist"; });
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,16 +28,17 @@ namespace PoopBuddy.Web
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.UseMvc();
 
-            app.UseSpa(spa =>
+            app.UseSpa(config =>
             {
-                spa.Options.SourcePath = "poopbuddy";
-
+                config.Options.SourcePath = "ClientApp";
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer("start");
+                    config.UseAngularCliServer(npmScript: "start");
                 }
             });
+
         }
     }
 }
