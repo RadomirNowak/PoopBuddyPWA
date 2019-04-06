@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TimerComponent } from './timer/component/timer.component';
+import { TimeComponent } from './timer/view/time.component';
 
 import { AppMaterialModule } from './app-material.module';
 
@@ -12,7 +13,8 @@ import { AppMaterialModule } from './app-material.module';
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent
+    TimerComponent,
+    TimeComponent 
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,6 @@ import { AppMaterialModule } from './app-material.module';
     AppMaterialModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, TimerComponent]
+  bootstrap: [AppComponent, TimerComponent ]
 })
 export class AppModule { }

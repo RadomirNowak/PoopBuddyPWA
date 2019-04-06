@@ -9,7 +9,10 @@ import { Time } from '../Time';
 })
 export class TimerComponent {
   private timerHelper : Timer;
-  private isPooping : boolean;
+
+  public buttonStateEnum = ButtonState;
+
+  public buttonState: ButtonState = ButtonState.Neutral;
 
   public Time: Time;
 
@@ -20,20 +23,35 @@ export class TimerComponent {
 
 
   togglePooping() {
-    if (this.isPooping)
-      this.pausePooping();
-    else
-      this.startPooping();
+    switch (this.buttonState) {
+      case ButtonState.Started:
+        this.pausePooping();
+        return;
+      case ButtonState.Neutral:
+      case ButtonState.Stopped:
+      case ButtonState.Paused:
+        this.startPooping();
+        return;
+      default:
+        throw "Button state not supported!";
+    }
   }
 
   pausePooping() {
     console.log("pause pooping");
     this.timerHelper.stop();
-    this.isPooping = false;
+    this.buttonState = ButtonState.Paused;
   }
   startPooping() {
     console.log("start pooping");
     this.timerHelper.start();
-    this.isPooping = true;
+    this.buttonState = ButtonState.Started;
   }
+}
+
+enum ButtonState {
+  Neutral = 0,
+  Started = 1,
+  Paused = 2,
+  Stopped = 3
 }
