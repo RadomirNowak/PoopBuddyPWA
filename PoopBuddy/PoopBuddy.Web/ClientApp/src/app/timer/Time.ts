@@ -22,12 +22,12 @@ export class Time {
   private _miliSecondsInSecond = 1000;
 
   constructor() {
-    console.log("Time constructor");
+    //console.log("Time constructor");
     this.reset();
   }
 
   reset() {
-    console.log("Time reset");
+    //console.log("Time reset");
     this._hours = this._minutes = this._seconds = this._miliSeconds = 0;
   }
 

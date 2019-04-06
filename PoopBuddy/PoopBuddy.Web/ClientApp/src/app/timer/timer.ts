@@ -1,10 +1,17 @@
 import {Time} from './Time'
 
 export class Timer {
-  time: Time;
-  timerInterval = 1;
-  count = 0;
-  interval;
+
+
+  private _time: Time;
+  get time(): Time {
+    return this._time;
+  }
+
+
+
+  private timerInterval = 50;
+  private interval;
 
   constructor() {
     //console.log("Timer constructor");
@@ -13,13 +20,22 @@ export class Timer {
 
   reset() {
     //console.log("Timer reset");
-    this.time = new Time();
+    this._time = new Time();
 
     if (this.interval) {
       //console.log("Timer reset - this.interval !== null");
-      clearTimeout(this.interval);
+      this.clearAllIntervalAndTimeout();
+      if (this.interval != undefined) {
+        throw "Timer interval not properly cleared! Interval: " + this.interval;
+      }
+        
     }
       
+  }
+
+  private clearAllIntervalAndTimeout() {
+    clearTimeout(this.interval);
+    this.interval = null;
   }
 
   start() {
@@ -31,7 +47,7 @@ export class Timer {
 
     if (this.interval) {
       //console.log("Timer start - this.interval");
-      clearTimeout(this.interval);
+      this.clearAllIntervalAndTimeout();
     }
 
     this.setTimeout();
@@ -39,15 +55,15 @@ export class Timer {
 
   stop() {
     //console.log("Timer stop");
-    clearTimeout(this.interval);
+    this.clearAllIntervalAndTimeout();
   }
 
-  updateTime(self) {
-    //console.log("Timer updateTime: " + this.count);
+  private updateTime(self) {
+    //console.log("Timer updateTime: " + self.time.miliSeconds + " ms " + self.time.seconds + " s");
     self.time.addMs(this.timerInterval);
   }
 
-  setTimeout() {
+  private setTimeout() {
     var that = this;
     this.interval = setTimeout(() => {
       this.updateTime(that);

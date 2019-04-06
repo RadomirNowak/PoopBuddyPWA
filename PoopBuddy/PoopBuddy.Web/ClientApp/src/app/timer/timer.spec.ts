@@ -14,6 +14,20 @@ function assertAllValuesAreZero(time:Time) {
 describe("Timer",
   () => {
 
+    var timer : Timer;
+
+    beforeEach(() => {
+      if (timer != null)
+        timer.reset();
+      timer = new Timer();
+    });
+
+    afterEach(() => {
+      if(timer != null)
+        timer.reset();
+      timer = null;
+    });
+
     it('should properly add ms after time passes',
       fakeAsync(() => {
         var timer = new Timer();
@@ -34,6 +48,22 @@ describe("Timer",
         expect(timer.time.minutes).toBe(1);
         timer.reset();
         assertAllValuesAreZero(timer.time);
+      }));
+
+    it('should not reset when stopped and started',
+      fakeAsync(() => {
+        var timer = new Timer();
+        timer.start();
+        tick(1000 * 23);
+        expect(timer.time.seconds).toBe(23);
+        timer.stop();
+        expect(timer.time.seconds).toBe(23);
+        tick(1000 * 23);
+        expect(timer.time.seconds).toBe(23);
+        timer.start();
+        tick(1000 * 23);
+        expect(timer.time.seconds).toBe(46);
+        timer.reset();
       }));
 
 
