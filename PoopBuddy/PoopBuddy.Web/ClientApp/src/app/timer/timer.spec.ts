@@ -1,18 +1,40 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Timer } from './Timer';
+import {Time} from './Time'
+
+
+function assertAllValuesAreZero(time:Time) {
+  expect(time.miliSeconds).toBe(0);
+  expect(time.seconds).toBe(0);
+  expect(time.minutes).toBe(0);
+  expect(time.hours).toBe(0);
+}
 
 describe("Timer",
   () => {
 
-    it('fake',
+    it('should properly add ms after time passes',
       fakeAsync(() => {
         var timer = new Timer();
-        console.log("Timer created");
         timer.start();
         tick(100);
-        console.log("Test miliseconds:" + timer.time.miliSeconds);
         timer.stop();
-
+        expect(timer.time.miliSeconds).toBe(100);
+        tick(1000);
+        expect(timer.time.seconds).toBe(0);
+        expect(timer.time.miliSeconds).toBe(100);
       }));
+
+    it('should reset time after reseting',
+      fakeAsync(() => {
+        var timer = new Timer();
+        timer.start();
+        tick(1000 * 60);
+        expect(timer.time.minutes).toBe(1);
+        timer.reset();
+        assertAllValuesAreZero(timer.time);
+      }));
+
+
   });

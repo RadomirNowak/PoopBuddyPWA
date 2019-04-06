@@ -7,46 +7,51 @@ export class Timer {
   interval;
 
   constructor() {
-    console.log("Timer constructor");
+    //console.log("Timer constructor");
     this.reset();
   }
 
   reset() {
-    console.log("Timer reset");
+    //console.log("Timer reset");
     this.time = new Time();
 
     if (this.interval) {
-      console.log("Timer reset - this.interval !== null");
-      clearInterval(this.interval);
+      //console.log("Timer reset - this.interval !== null");
+      clearTimeout(this.interval);
     }
       
   }
 
   start() {
-    console.log("Timer start");
+    //console.log("Timer start");
     if (this.time === null) {
-      console.log("Timer start - this.time === null");
+      //console.log("Timer start - this.time === null");
       this.reset();
     }
 
     if (this.interval) {
-      console.log("Timer start - this.interval");
-      clearInterval(this.interval);
+      //console.log("Timer start - this.interval");
+      clearTimeout(this.interval);
     }
 
-    var that = this;
-    this.interval = setInterval(() => {
-      this.updateTime(that);
-    }, this.timerInterval);
+    this.setTimeout();
   }
 
   stop() {
-    console.log("Timer stop");
-    clearInterval(this.interval);
+    //console.log("Timer stop");
+    clearTimeout(this.interval);
   }
 
   updateTime(self) {
-    console.log("Timer updateTime: " + this.count);
+    //console.log("Timer updateTime: " + this.count);
     self.time.addMs(this.timerInterval);
+  }
+
+  setTimeout() {
+    var that = this;
+    this.interval = setTimeout(() => {
+      this.updateTime(that);
+      this.setTimeout();
+    }, this.timerInterval);
   }
 }
