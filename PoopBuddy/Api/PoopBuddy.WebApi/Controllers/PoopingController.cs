@@ -1,17 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PoopBuddy.WebApi.DTO;
+using PoopBuddy.Data;
+using PoopBuddy.Shared.DTO;
 
 namespace PoopBuddy.WebApi.Controllers
 {
     [Route("[controller]")]
+    [ApiController]
     public class PoopingController : Controller
     {
+        private readonly IPoopingLogic poopingLogic;
+
+        public PoopingController(IPoopingLogic poopingLogic)
+        {
+            this.poopingLogic = poopingLogic;
+        }
+
         [Route("[action]")]
         [ProducesResponseType(typeof(GetAllPoopingsResponse), StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
-            return Ok(new GetAllPoopingsResponse());
+            var result = poopingLogic.GetAll();
+            return Ok(result);
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PoopBuddy.Data;
 
 namespace PoopBuddy.WebApi
 {
@@ -16,6 +17,13 @@ namespace PoopBuddy.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            InitializeProjectsDependencies(services);
+        }
+
+        private void InitializeProjectsDependencies(IServiceCollection services)
+        {
+            services.AddDataServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

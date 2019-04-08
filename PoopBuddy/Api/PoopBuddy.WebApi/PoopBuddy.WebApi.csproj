@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PoopBuddy.Data\PoopBuddy.Data.csproj" />
     <ProjectReference Include="..\..\PoopBuddy.Shared\PoopBuddy.Shared.csproj" />
   </ItemGroup>
 

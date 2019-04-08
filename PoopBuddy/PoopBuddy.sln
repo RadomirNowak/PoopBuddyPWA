@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoopBuddy.Shared", "PoopBud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoopBuddy.Test", "PoopBuddy.Test\PoopBuddy.Test.csproj", "{5CA4EB96-7867-4575-A7D1-ACAA7B704308}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoopBuddy.Data", "PoopBuddy.Data\PoopBuddy.Data.csproj", "{122C0B8B-D300-446E-9C94-69CBDB8FE7A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{5CA4EB96-7867-4575-A7D1-ACAA7B704308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CA4EB96-7867-4575-A7D1-ACAA7B704308}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CA4EB96-7867-4575-A7D1-ACAA7B704308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122C0B8B-D300-446E-9C94-69CBDB8FE7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122C0B8B-D300-446E-9C94-69CBDB8FE7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122C0B8B-D300-446E-9C94-69CBDB8FE7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122C0B8B-D300-446E-9C94-69CBDB8FE7A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{520E9B73-F8DB-41B2-A3B4-F66BB6B08FA8} = {DBED734C-F8C1-4DF6-99D5-120F32FC3518}
 		{1B40B467-A84B-4C83-8A09-2A49E3911CAE} = {71402BE5-F5AF-4B56-81AB-98F73DE85117}
 		{18E8EA7A-FB7D-4DB0-81A3-8174A14EF8E3} = {71402BE5-F5AF-4B56-81AB-98F73DE85117}
+		{122C0B8B-D300-446E-9C94-69CBDB8FE7A3} = {71402BE5-F5AF-4B56-81AB-98F73DE85117}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E4C5CE1-72C2-4CE7-BBF3-DFE0336DAFE3}
