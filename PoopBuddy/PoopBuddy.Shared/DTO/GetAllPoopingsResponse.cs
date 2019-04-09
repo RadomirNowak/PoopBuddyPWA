@@ -4,6 +4,6 @@ namespace PoopBuddy.Shared.DTO
 {
     public class GetAllPoopingsResponse
     {
-        public IList<object> PoopingList { get; set; }
+        public IList<PoopingDTO> PoopingList { get; set; }
     }
 }
