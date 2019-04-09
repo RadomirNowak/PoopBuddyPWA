@@ -24,5 +24,13 @@ namespace PoopBuddy.WebApi.Controllers
             var result = poopingLogic.GetAll();
             return Ok(result);
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult AddPooping(AddPoopingRequest request)
+        {
+
+            return Ok();
+        }
     }
 }

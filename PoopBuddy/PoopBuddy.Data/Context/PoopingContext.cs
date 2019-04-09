@@ -13,9 +13,15 @@ namespace PoopBuddy.Data.Context
             this.configuration = configuration;
         }
 
+        public PoopingContext(DbContextOptions<PoopingContext> options) : base(options)
+        {
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(configuration.ConnectionString);
+            if(optionsBuilder.IsConfigured == false) // checking if db was not already configured for InMemory tests
+                optionsBuilder.UseSqlServer(configuration.ConnectionString);
         }
 
         public DbSet<PoopingEntity> Poopings { get;set; }

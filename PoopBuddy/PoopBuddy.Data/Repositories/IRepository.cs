@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using PoopBuddy.Data.Context;
@@ -10,11 +11,12 @@ namespace PoopBuddy.Data.Repositories
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        T GetById(Guid id);
+        [NotNull] T GetById(Guid id);
         IEnumerable<T> GetAll();
-        void Insert(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        void Add([NotNull] T entity);
+        void Update([NotNull] T entity);
+        void Delete([NotNull] T entity);
+        T GetSingle([NotNull] Expression<Func<T, bool>> expression);
     }
 
     public abstract class RepositoryBase<T> : IRepository<T> where T : BaseEntity
@@ -38,7 +40,7 @@ namespace PoopBuddy.Data.Repositories
             return entities.Select(e => e);
         }
 
-        public void Insert([NotNull] T entity)
+        public void Add(T entity)
         {
             if (entity == null) 
                 throw new ArgumentNullException(nameof(entity));
@@ -47,7 +49,7 @@ namespace PoopBuddy.Data.Repositories
             context.SaveChanges();
         }
 
-        public void Update([NotNull] T entity)
+        public void Update(T entity)
         {
             if (entity == null) 
                 throw new ArgumentNullException(nameof(entity));
@@ -55,13 +57,21 @@ namespace PoopBuddy.Data.Repositories
             context.SaveChanges();
         }
 
-        public void Delete([NotNull]T entity)
+        public void Delete(T entity)
         {
             if (entity == null) 
                 throw new ArgumentNullException(nameof(entity));
 
             entities.Remove(entity);
             context.SaveChanges();
+        }
+
+        public T GetSingle(Expression<Func<T,bool>> expression)
+        {
+            if (expression == null) 
+                throw new ArgumentNullException(nameof(expression));
+
+            return entities.Single(expression);
         }
     }
 }

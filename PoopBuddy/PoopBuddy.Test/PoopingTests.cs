@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PoopBuddy.Data;
+using PoopBuddy.Data.Context;
+using PoopBuddy.Data.Repositories;
 using PoopBuddy.Shared.DTO;
 using PoopBuddy.WebApi.Controllers;
+
 
 namespace PoopBuddy.Test
 {
@@ -84,5 +88,7 @@ namespace PoopBuddy.Test
             Assert.AreEqual(1, item.Duration.TotalSeconds);
 
         }
+
+
     }
 }
