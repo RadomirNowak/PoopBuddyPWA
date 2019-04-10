@@ -12,11 +12,14 @@ namespace PoopBuddy.Data.Repositories
     public interface IRepository<T> where T : BaseEntity
     {
         [NotNull] T GetById(Guid id);
+        [CanBeNull] T GetByIdOrDefault(Guid id);
         IEnumerable<T> GetAll();
-        void Add([NotNull] T entity);
+        Guid Add([NotNull] T entity);
         void Update([NotNull] T entity);
         void Delete([NotNull] T entity);
-        T GetSingle([NotNull] Expression<Func<T, bool>> expression);
+        void Delete(Guid id);
+        [NotNull]T GetSingle([NotNull] Expression<Func<T, bool>> expression);
+        [CanBeNull]T GetSingleOrDefault([NotNull] Expression<Func<T, bool>> expression);
     }
 
     public abstract class RepositoryBase<T> : IRepository<T> where T : BaseEntity
@@ -35,18 +38,25 @@ namespace PoopBuddy.Data.Repositories
             return entities.Single(e=>e.Id == id);
         }
 
+        public T GetByIdOrDefault(Guid id)
+        {
+            return entities.SingleOrDefault(e=>e.Id == id);
+        }
+
         public IEnumerable<T> GetAll()
         {
             return entities.Select(e => e);
         }
 
-        public void Add(T entity)
+        public Guid Add(T entity)
         {
             if (entity == null) 
                 throw new ArgumentNullException(nameof(entity));
 
             entities.Add(entity);
             context.SaveChanges();
+
+            return entity.Id;
         }
 
         public void Update(T entity)
@@ -66,12 +76,26 @@ namespace PoopBuddy.Data.Repositories
             context.SaveChanges();
         }
 
+        public void Delete(Guid id)
+        {
+            var entity = GetById(id);
+            Delete(entity);
+        }
+
         public T GetSingle(Expression<Func<T,bool>> expression)
         {
             if (expression == null) 
                 throw new ArgumentNullException(nameof(expression));
 
             return entities.Single(expression);
+        }
+
+        public T GetSingleOrDefault(Expression<Func<T, bool>> expression)
+        {
+            if (expression == null) 
+                throw new ArgumentNullException(nameof(expression));
+
+            return entities.SingleOrDefault(expression);
         }
     }
 }
