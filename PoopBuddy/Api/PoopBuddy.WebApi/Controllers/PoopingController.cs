@@ -30,7 +30,7 @@ namespace PoopBuddy.WebApi.Controllers
         [HttpPost]
         public IActionResult AddPooping(AddPoopingRequest request)
         {
-
+            poopingLogic.Add(request);
             return Ok();
         }
     }

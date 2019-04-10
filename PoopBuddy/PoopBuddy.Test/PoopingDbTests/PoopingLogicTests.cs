@@ -7,21 +7,12 @@ using PoopBuddy.Shared.DTO;
 namespace PoopBuddy.Test.PoopingDbTests
 {
     [TestClass]
-    public class PoopingLogicTests : PoopingRepositoryTestBase
+    public class PoopingLogicTests : PoopingLogicTestBase
     {
-        private IPoopingLogic poopingLogic;
-
-        [TestInitialize]
-        public override void BeforeEachTest()
-        {
-            base.BeforeEachTest();
-            poopingLogic = new PoopingLogic(PoopingRepository);
-        }
-
         [TestMethod]
         public void GetAllPoopingsEmptyResponseTest()
         {
-            var response = poopingLogic.GetAll();
+            var response = PoopingLogic.GetAll();
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.PoopingList);
             Assert.AreEqual(0, response.PoopingList.Count);
@@ -36,8 +27,8 @@ namespace PoopBuddy.Test.PoopingDbTests
                 Duration = TimeSpan.FromMinutes(3),
                 WagePerHour = 12
             };
-            poopingLogic.Add(poopingRequest);
-            var allPoopings = poopingLogic.GetAll();
+            PoopingLogic.Add(poopingRequest);
+            var allPoopings = PoopingLogic.GetAll();
 
             Assert.IsNotNull(allPoopings);
             Assert.IsNotNull(allPoopings.PoopingList);
