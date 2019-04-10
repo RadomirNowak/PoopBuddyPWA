@@ -2,26 +2,16 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoopBuddy.Data.Database.Entities;
-using PoopBuddy.Data.Database.Repositories;
 
-namespace PoopBuddy.Test
+namespace PoopBuddy.Test.PoopingDbTests
 {
     [TestClass]
-    public class PoopingRepositoryTests : InMemoryDbTestBase
+    public class PoopingRepositoryTests : PoopingRepositoryTestBase
     {
-        private IPoopingRepository poopingRepository;
-
-        [TestInitialize]
-        public override void BeforeEachTest()
-        {
-            base.BeforeEachTest();
-            poopingRepository = new PoopingRepository(Context);
-        }
-
         [TestMethod]
         public void AddPersistItemInDatabase()
         {
-            poopingRepository.Add(new PoopingEntity
+            PoopingRepository.Add(new PoopingEntity
             {
                 Author = "Czesio",
                 Duration = new TimeSpan(0, 0, 5),
@@ -29,7 +19,7 @@ namespace PoopBuddy.Test
                 ExternalId = Guid.NewGuid()
             });
 
-            var pooping = poopingRepository.GetSingle(e => e.Author == "Czesio");
+            var pooping = PoopingRepository.GetSingle(e => e.Author == "Czesio");
 
             Assert.AreNotEqual(new Guid(), pooping.ExternalId, "Guid is not random!");
             Assert.AreEqual(15, pooping.WagePerHour);
@@ -40,14 +30,14 @@ namespace PoopBuddy.Test
         [TestMethod]
         public void GetAllItemsReturnsEmptyListWhenNoItemsArePresent()
         {
-            var allItems = poopingRepository.GetAll();
+            var allItems = PoopingRepository.GetAll();
             Assert.IsNotNull(allItems);
             Assert.AreEqual(0, allItems.Count());
         }
 
         private Guid AddPoopingToDb(string author, decimal wagePerHour, TimeSpan duration)
         {
-            return poopingRepository.Add(new PoopingEntity
+            return PoopingRepository.Add(new PoopingEntity
             {
                 Author = author,
                 WagePerHour = wagePerHour,
@@ -63,9 +53,9 @@ namespace PoopBuddy.Test
             var guid1 = AddPoopingToDb(duplicatedAuthor, 5, TimeSpan.FromSeconds(1));
             var guid2 = AddPoopingToDb(duplicatedAuthor, 16, TimeSpan.FromSeconds(1));
 
-            Assert.AreNotEqual(guid2, guid1 );
+            Assert.AreNotEqual(guid2, guid1);
             Assert.ThrowsException<InvalidOperationException>(
-                () => poopingRepository.GetSingle(p => p.Author == duplicatedAuthor));
+                () => PoopingRepository.GetSingle(p => p.Author == duplicatedAuthor));
         }
 
         [TestMethod]
@@ -75,9 +65,12 @@ namespace PoopBuddy.Test
             var guid2 = AddPoopingToDb("Jane", 16, TimeSpan.FromSeconds(2));
             var guid3 = AddPoopingToDb("Janice", 22, TimeSpan.FromSeconds(3));
 
-            AssertEntitiesAreEqual(guid1, "John", 5, TimeSpan.FromSeconds(1), poopingRepository.GetSingle(e => e.Author == "John"));
-            AssertEntitiesAreEqual(guid2, "Jane", 16, TimeSpan.FromSeconds(2), poopingRepository.GetSingle(e => e.Author == "Jane"));
-            AssertEntitiesAreEqual(guid3, "Janice", 22, TimeSpan.FromSeconds(3), poopingRepository.GetSingle(e => e.Author == "Janice"));
+            AssertEntitiesAreEqual(guid1, "John", 5, TimeSpan.FromSeconds(1),
+                PoopingRepository.GetSingle(e => e.Author == "John"));
+            AssertEntitiesAreEqual(guid2, "Jane", 16, TimeSpan.FromSeconds(2),
+                PoopingRepository.GetSingle(e => e.Author == "Jane"));
+            AssertEntitiesAreEqual(guid3, "Janice", 22, TimeSpan.FromSeconds(3),
+                PoopingRepository.GetSingle(e => e.Author == "Janice"));
         }
 
         private void AssertEntitiesAreEqual(Guid id, string author, decimal wagePerHour, TimeSpan duration,
@@ -93,7 +86,7 @@ namespace PoopBuddy.Test
         public void AddingEntityWithSameIdThrows()
         {
             var guid1 = AddRandomPoopingToDb();
-            Assert.ThrowsException<InvalidOperationException>(() => poopingRepository.Add(new PoopingEntity
+            Assert.ThrowsException<InvalidOperationException>(() => PoopingRepository.Add(new PoopingEntity
             {
                 Author = "Other random",
                 Duration = TimeSpan.FromSeconds(5),
@@ -117,20 +110,20 @@ namespace PoopBuddy.Test
             AddRandomPoopingToDb();
             AddRandomPoopingToDb();
 
-            var allItems = poopingRepository.GetAll();
+            var allItems = PoopingRepository.GetAll();
             Assert.AreEqual(4, allItems.Count());
-            Assert.IsNotNull(poopingRepository.GetById(guidToLookup));
-            poopingRepository.Delete(guidToDelete);
-            allItems = poopingRepository.GetAll();
+            Assert.IsNotNull(PoopingRepository.GetById(guidToLookup));
+            PoopingRepository.Delete(guidToDelete);
+            allItems = PoopingRepository.GetAll();
 
             Assert.AreEqual(3, allItems.Count());
-            Assert.IsNull(allItems.SingleOrDefault(p=>p.Id == guidToDelete));
+            Assert.IsNull(allItems.SingleOrDefault(p => p.Id == guidToDelete));
         }
 
         [TestMethod]
         public void SingleOrDefaultReturnsNullIfNotExists()
         {
-            Assert.IsNull(poopingRepository.GetSingleOrDefault(p => p.Author == "Non existing author"));
+            Assert.IsNull(PoopingRepository.GetSingleOrDefault(p => p.Author == "Non existing author"));
         }
     }
 }

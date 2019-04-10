@@ -2,14 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PoopBuddy.Data;
 using PoopBuddy.Data.Logic;
 using PoopBuddy.Shared.DTO;
 using PoopBuddy.WebApi.Controllers;
-
 
 namespace PoopBuddy.Test
 {
@@ -25,10 +22,7 @@ namespace PoopBuddy.Test
             // ARRANGE
             var poopingLogic = new Mock<IPoopingLogic>();
             IList<PoopingDTO> objList = new List<PoopingDTO>();
-            for (var i = 0; i < length; i++)
-            {
-                objList.Add(new PoopingDTO());
-            }
+            for (var i = 0; i < length; i++) objList.Add(new PoopingDTO());
             poopingLogic.Setup(pl => pl.GetAll()).Returns(new GetAllPoopingsResponse
             {
                 PoopingList = objList
@@ -55,7 +49,6 @@ namespace PoopBuddy.Test
             var poopingLogic = new Mock<IPoopingLogic>();
             IList<PoopingDTO> objList = new List<PoopingDTO>();
             for (var i = 0; i < 5; i++)
-            {
                 objList.Add(new PoopingDTO
                 {
                     AuthorName = authorNamePrefix + i,
@@ -63,7 +56,6 @@ namespace PoopBuddy.Test
                     ExternalId = new Guid(),
                     Duration = new TimeSpan(0, 0, i)
                 });
-            }
             poopingLogic.Setup(pl => pl.GetAll()).Returns(new GetAllPoopingsResponse
             {
                 PoopingList = objList
@@ -85,9 +77,6 @@ namespace PoopBuddy.Test
             Assert.IsNotNull(item);
             Assert.AreEqual(11, item.WagePerHour);
             Assert.AreEqual(1, item.Duration.TotalSeconds);
-
         }
-
-
     }
 }

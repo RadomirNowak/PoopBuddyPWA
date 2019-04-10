@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using PoopBuddy.Data.Database.Entities;
 using PoopBuddy.Data.Database.Repositories;
 using PoopBuddy.Shared.DTO;
@@ -8,8 +9,8 @@ namespace PoopBuddy.Data.Logic
 {
     public interface IPoopingLogic
     {
-        GetAllPoopingsResponse GetAll();
-        void Add(AddPoopingRequest request);
+        [NotNull] GetAllPoopingsResponse GetAll();
+        Guid Add([NotNull] AddPoopingRequest request);
     }
 
     public class PoopingLogic : IPoopingLogic
@@ -40,17 +41,17 @@ namespace PoopBuddy.Data.Logic
             return response;
         }
 
-        public void Add(AddPoopingRequest request)
+        public Guid Add(AddPoopingRequest request)
         {
             var poopingEntity = new PoopingEntity
             {
                 Author = request.AuthorName,
                 WagePerHour = request.WagePerHour,
                 Duration = request.Duration,
-                ExternalId = new Guid()
+                ExternalId = Guid.NewGuid()
             };
 
-            poopingRepository.Add(poopingEntity);
+            return poopingRepository.Add(poopingEntity);
         }
     }
 }
