@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PoopBuddy.Data;
-using PoopBuddy.Data.Context;
-using PoopBuddy.Data.Repositories;
+using PoopBuddy.Data.Logic;
 using PoopBuddy.Shared.DTO;
 using PoopBuddy.WebApi.Controllers;
 

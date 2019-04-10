@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using PoopBuddy.Data.Entities;
-using PoopBuddy.Data.Repositories;
+using PoopBuddy.Data.Database.Entities;
+using PoopBuddy.Data.Database.Repositories;
 using PoopBuddy.Shared.DTO;
 
-namespace PoopBuddy.Data
+namespace PoopBuddy.Data.Logic
 {
     public interface IPoopingLogic
     {

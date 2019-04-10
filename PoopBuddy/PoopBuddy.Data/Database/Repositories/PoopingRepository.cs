@@ -1,7 +1,7 @@
-﻿using PoopBuddy.Data.Context;
-using PoopBuddy.Data.Entities;
+﻿using PoopBuddy.Data.Database.Context;
+using PoopBuddy.Data.Database.Entities;
 
-namespace PoopBuddy.Data.Repositories
+namespace PoopBuddy.Data.Database.Repositories
 {
     public interface IPoopingRepository : IRepository<PoopingEntity>
     {

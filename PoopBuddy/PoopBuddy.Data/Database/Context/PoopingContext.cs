@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PoopBuddy.Data.Entities;
+using PoopBuddy.Data.Database.Entities;
 using PoopBuddy.Shared;
 
-namespace PoopBuddy.Data.Context
+namespace PoopBuddy.Data.Database.Context
 {
     public class PoopingContext : DbContext
     {

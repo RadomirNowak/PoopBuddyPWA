@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PoopBuddy.Data.Context;
-using PoopBuddy.Data.Repositories;
+using PoopBuddy.Data.Database.Context;
+using PoopBuddy.Data.Database.Repositories;
+using PoopBuddy.Data.Logic;
 
 namespace PoopBuddy.Data
 {

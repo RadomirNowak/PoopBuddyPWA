@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PoopBuddy.Data.Entities
+namespace PoopBuddy.Data.Database.Entities
 {
     public class BaseEntity
     {

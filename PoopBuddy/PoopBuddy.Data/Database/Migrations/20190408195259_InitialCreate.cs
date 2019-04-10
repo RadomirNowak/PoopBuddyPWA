@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PoopBuddy.Data.Migrations
+namespace PoopBuddy.Data.Database.Migrations
 {
     public partial class InitialCreate : Migration
     {

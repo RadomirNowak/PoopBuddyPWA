@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PoopBuddy.Data;
+using PoopBuddy.Data.Logic;
 using PoopBuddy.Shared.DTO;
 
 namespace PoopBuddy.WebApi.Controllers

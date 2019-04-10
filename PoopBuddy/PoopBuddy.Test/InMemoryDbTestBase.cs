@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PoopBuddy.Data.Context;
+using PoopBuddy.Data.Database.Context;
 
 namespace PoopBuddy.Test
 {

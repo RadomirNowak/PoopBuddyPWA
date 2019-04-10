@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PoopBuddy.Data.Entities;
-using PoopBuddy.Data.Repositories;
+using PoopBuddy.Data.Database.Entities;
+using PoopBuddy.Data.Database.Repositories;
 
 namespace PoopBuddy.Test
 {
