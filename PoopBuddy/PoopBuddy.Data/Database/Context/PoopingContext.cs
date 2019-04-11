@@ -8,14 +8,9 @@ namespace PoopBuddy.Data.Database.Context
     {
         private readonly IWebApiConfiguration configuration;
 
-        public PoopingContext(IWebApiConfiguration configuration)
+        public PoopingContext(IWebApiConfiguration configuration, DbContextOptions<PoopingContext> options) : base(options)
         {
             this.configuration = configuration;
-        }
-
-        public PoopingContext(DbContextOptions<PoopingContext> options) : base(options)
-        {
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

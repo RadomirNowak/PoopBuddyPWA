@@ -13,6 +13,10 @@ namespace PoopBuddy.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("InternalApiPolicy", builder=> builder.AllowAnyOrigin());
+            });
 
             InitializeProjectsDependencies(services);
         }
@@ -35,7 +39,8 @@ namespace PoopBuddy.WebApi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
+            app.UseCors("InternalApiPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using PoopBuddy.Data.Database.Context;
+using PoopBuddy.Shared;
 
 namespace PoopBuddy.Test.PoopingDbTests
 {
@@ -21,7 +23,8 @@ namespace PoopBuddy.Test.PoopingDbTests
                 .UseInMemoryDatabase(TestContext.TestName)
                 .Options;
 
-            Context = new PoopingContext(options);
+            var configuration = new Mock<IWebApiConfiguration>();
+            Context = new PoopingContext(configuration.Object, options);
         }
 
         [TestCleanup]
