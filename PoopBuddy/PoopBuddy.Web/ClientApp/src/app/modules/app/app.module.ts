@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { TimerComponent } from './timer/component/timer.component';
-import { TimeComponent } from './timer/view/time.component';
+import { AppComponent } from "./components/app.component";
+import { TimerComponent } from "../../shared/timer/component/timer.component";
+import { TimeComponent } from "../../shared/time/component/time.component";
 
 import { AppMaterialModule } from './app-material.module';
 

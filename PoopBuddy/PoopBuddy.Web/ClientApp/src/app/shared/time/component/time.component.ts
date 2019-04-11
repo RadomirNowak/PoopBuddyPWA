@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Time } from '../Time';
+import { Time } from "../Time";
 
 @Component({
   selector: 'app-time',

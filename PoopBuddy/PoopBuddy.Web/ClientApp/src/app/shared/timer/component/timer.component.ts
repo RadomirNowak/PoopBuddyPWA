@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Timer } from '../Timer';
-import { Time } from '../Time';
+import { Timer } from "../Timer";
+import { Time } from "../../time/Time";
 
 @Component({
   selector: 'app-timer',
