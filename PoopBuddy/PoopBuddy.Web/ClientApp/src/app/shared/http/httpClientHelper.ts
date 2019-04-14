@@ -19,7 +19,10 @@ export class HttpClientHelper implements IHttpClientHelper{
   }
 
   get<TResponse>(address: string, onResponse: (response: TResponse) => void) : void {
+    console.log("calling get in HCH");
     this.httpClient.get<TResponse>(address).subscribe((data: TResponse) => {
+      console.log("response below from httpclienthelper");
+      console.log(data);
       onResponse(data);
     });
   }

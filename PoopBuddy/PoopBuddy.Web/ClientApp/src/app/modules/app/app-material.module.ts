@@ -2,7 +2,8 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatToolbarModule,
-  MatIconModule
+  MatIconModule,
+  MatTableModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 import 'hammerjs';
@@ -12,13 +13,15 @@ import 'hammerjs';
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
 })
 export class AppMaterialModule {}

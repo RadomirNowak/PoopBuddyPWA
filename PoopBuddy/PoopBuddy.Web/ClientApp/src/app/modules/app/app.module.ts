@@ -13,12 +13,14 @@ import { HttpClientHelper } from "../../shared/http/httpClientHelper";
 
 // Components
 import { AppComponent } from "./components/app.component";
+import { ListPoopingComponent } from "../list-pooping/list-pooping.component";
 import { TimerComponent } from "../../shared/timer/component/timer.component";
 import { TimeComponent } from "../../shared/time/component/time.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    ListPoopingComponent,
     TimerComponent,
     TimeComponent
   ],
