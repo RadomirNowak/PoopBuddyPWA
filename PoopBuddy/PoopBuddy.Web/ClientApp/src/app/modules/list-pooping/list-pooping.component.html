@@ -5,6 +5,21 @@
       <td mat-cell *matCellDef="let pooping">{{pooping.authorName}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="poopingDuration">
+      <th mat-header-cell *matHeaderCellDef>Duration</th>
+      <td mat-cell *matCellDef="let pooping">{{pooping.duration}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="wagePerHour">
+      <th mat-header-cell *matHeaderCellDef>Wage per hour</th>
+      <td mat-cell *matCellDef="let pooping">{{pooping.wagePerHour}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalEarnings">
+      <th mat-header-cell *matHeaderCellDef>Total earnings</th>
+      <td mat-cell *matCellDef="let pooping">{{calculateEarning(pooping.duration, pooping.wagePerHour)}}</td>
+    </ng-container>
+
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

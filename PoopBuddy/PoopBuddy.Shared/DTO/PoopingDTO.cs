@@ -14,6 +14,8 @@ namespace PoopBuddy.Shared.DTO
 
         public TimeSpan Duration { get; set; }
 
+        public double DurationInMs => Duration.TotalMilliseconds;
+
         public decimal WagePerHour { get; set; }
     }
 }

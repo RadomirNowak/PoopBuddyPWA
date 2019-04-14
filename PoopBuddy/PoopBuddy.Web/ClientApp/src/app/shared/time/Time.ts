@@ -19,6 +19,21 @@ export class Time {
     return this._miliSeconds;
   }
 
+  private _totalMiliseconds : number;
+  get totalMiliseconds(): number {
+    var hourMs = this.hours * 60 * 60 * this._miliSecondsInSecond;
+    var minutesMs = this.minutes * 60 * this._miliSecondsInSecond;
+    var secondsMs = this.seconds * this._miliSecondsInSecond;
+    return hourMs + minutesMs + secondsMs + this.miliSeconds;
+  }
+
+  private _totalSeconds : number;
+  get totalSeconds(): number {
+    var hourMs = this.hours * 60 * 60;
+    var minutesMs = this.minutes * 60;
+    return hourMs + minutesMs + this.seconds;
+  }
+
   private _miliSecondsInSecond = 1000;
 
   constructor() {

@@ -17,8 +17,10 @@ export class LocalApiClient {
   }
 
   public getAllPoopings(onResponse: (response: GetAllPoopingsResponse) => void): void {
-    this.logger.debug("About to call getAllPoopings on " + this.localApiAddress);
-    return this.httpClientHelper.get<GetAllPoopingsResponse>(this.localApiAddress,
+    var action = "getAllPoopings";
+    var fullAddress = this.localApiAddress + action;
+    this.logger.debug("About to call getAllPoopings on " + fullAddress);
+    return this.httpClientHelper.get<GetAllPoopingsResponse>(fullAddress,
       (response) => {
         onResponse(response);
       });

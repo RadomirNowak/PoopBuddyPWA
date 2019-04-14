@@ -1,3 +1,3 @@
 {
-	"localApi.address" :  "https://testaddress.com" 
+  "localApi.address": "https://localhost:44321/localApi/"
 }
