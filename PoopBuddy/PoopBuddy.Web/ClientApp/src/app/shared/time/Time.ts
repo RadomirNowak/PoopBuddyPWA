@@ -53,7 +53,7 @@ export class Time {
     let miliSeconds = this._miliSeconds.toString().padStart(2, '0');
     let separator = ":";
 
-    let fullText = `${hours}${separator}${minutes}${separator}${seconds}${separator}${miliSeconds}`;
+    let fullText = `${hours}${separator}${minutes}${separator}${seconds}`;
 
     return fullText;
   }
