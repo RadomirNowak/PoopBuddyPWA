@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 
 
@@ -25,7 +26,11 @@ import { TimeComponent } from "../../shared/time/component/time.component";
     TimeComponent
   ],
   imports: [
+    LoggerModule.forRoot({
+      level: NgxLoggerLevel.DEBUG
+    }),
     BrowserModule,
+    
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
