@@ -23,7 +23,21 @@ namespace PoopBuddy.Web.Controller
                         Duration = TimeSpan.FromSeconds(6),
                         WagePerHour = 55,
                         ExternalId = Guid.NewGuid()
-                    }
+                    },
+                    new PoopingDTO
+                    {
+                        AuthorName = "Jane",
+                        Duration = TimeSpan.FromSeconds(12),
+                        WagePerHour = 10,
+                        ExternalId = Guid.NewGuid()
+                    },
+                    new PoopingDTO
+                    {
+                        AuthorName = "Janice",
+                        Duration = TimeSpan.FromSeconds(64),
+                        WagePerHour = 66,
+                        ExternalId = Guid.NewGuid()
+                    },
                 }
             });
         }

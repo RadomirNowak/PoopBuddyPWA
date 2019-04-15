@@ -1,6 +1,6 @@
 import { Time } from "../../shared/time/Time";
 
-export interface IPooping {
+export class Pooping {
   externalId: string;
   authorName: string;
   duration: Time;

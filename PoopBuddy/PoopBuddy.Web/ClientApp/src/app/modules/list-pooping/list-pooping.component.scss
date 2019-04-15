@@ -1,0 +1,48 @@
+.pooping-list-table {
+  width: 100%;
+
+  mat-header-row { // headers
+    .mat-column-position {
+      flex: 0.2 1 15px;
+    }
+
+    .mat-column-authorName {
+    }
+
+    .mat-column-poopingDuration {
+    }
+
+    .mat-column-wagePerHour {
+    }
+
+    .mat-column-totalEarnings, .mat-column-wagePerHour {
+      padding-right: 5px;
+      flex-direction: column;
+      align-items: center; // horizontal
+      justify-content: center; // vertical
+      text-align: center;
+    }
+  }
+
+  mat-row { // values
+    .mat-column-position {
+      flex: 0.2 1 15px;
+    }
+
+    .mat-column-authorName {
+    }
+
+    .mat-column-poopingDuration {
+    }
+
+    .mat-column-wagePerHour {
+    }
+
+    .mat-column-totalEarnings, .mat-column-wagePerHour {
+      padding-right: 5px;
+      flex-direction: column;
+      align-items: center; // horizontal
+      justify-content: center; // vertical
+    }
+  }
+}
