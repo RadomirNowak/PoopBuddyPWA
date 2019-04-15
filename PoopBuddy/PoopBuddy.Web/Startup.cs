@@ -12,8 +12,14 @@ namespace PoopBuddy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("InternalApiPolicy", builder=> builder.AllowAnyOrigin());
+            });
+
 
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            services.AddWebAppServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +34,8 @@ namespace PoopBuddy.Web
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            
+            app.UseCors("InternalApiPolicy");
             app.UseMvc();
 
             app.UseSpa(config =>

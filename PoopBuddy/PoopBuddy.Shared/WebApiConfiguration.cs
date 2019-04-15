@@ -46,7 +46,7 @@ namespace PoopBuddy.Shared
         string ConnectionString { get; }
     }
 
-    public class WebApiConfiguration : ConfigurationBase, IWebApiConfiguration
+    internal class WebApiConfiguration : ConfigurationBase, IWebApiConfiguration
     {
         public string ConnectionString => GetStringOrDefault("ConnectionString", @"Server=(localdb)\mssqllocaldb;Database=PoopBuddyDevDb;Trusted_Connection=True;ConnectRetryCount=0");
 
