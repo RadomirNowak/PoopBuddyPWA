@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClientHelper} from "../../shared/http/httpClientHelper"
 import {ApplicationConfiguration} from "../../shared/configuration/applicationConfiguration"
 import { GetAllPoopingsResponse }  from "../../shared/dto/GetAllPoopingsResponse";
+import { RecordPoopingRequest }  from "../../shared/dto/RecordPoopingRequest";
 import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
@@ -24,6 +25,14 @@ export class LocalApiClient {
       (response) => {
         onResponse(response);
       });
+  }
+
+  public recordPooping(request: RecordPoopingRequest): void {
+    var action = "recordPooping";
+    var fullAddress = this.localApiAddress + action;
+    this.logger.debug("About to call recordPooping on " + fullAddress);
+
+    this.httpClientHelper.post(request, fullAddress, () => {});
   }
 }
 

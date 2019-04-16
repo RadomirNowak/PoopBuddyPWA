@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 import { Timer } from "../Timer";
 import { Time } from "../../time/Time";
+import { RecordPoopingRequest } from "../../dto/RecordPoopingRequest";
+import { LocalApiClient } from "../../../core/api-client/localApiClient";
 
 @Component({
   selector: 'app-timer',
@@ -16,7 +19,7 @@ export class TimerComponent {
 
   public Time: Time;
 
-  constructor() {
+  constructor(private logger: NGXLogger, private apiClient: LocalApiClient) {
     this.timerHelper = new Timer();
     this.Time = this.timerHelper.time;
   }
@@ -37,15 +40,26 @@ export class TimerComponent {
     }
   }
 
-  pausePooping() {
-    console.log("pause pooping");
+  private pausePooping() {
+    this.logger.debug("pause pooping");
     this.timerHelper.stop();
     this.buttonState = ButtonState.Paused;
   }
-  startPooping() {
-    console.log("start pooping");
+  private startPooping() {
+    this.logger.debug("start pooping");
     this.timerHelper.start();
     this.buttonState = ButtonState.Started;
+  }
+
+  recordPooping() {
+    var authorName = "Pooping user"; // todo get this from user input
+    var wagePerHour = 10; // todo get this from user input
+    var recordPoopingRequest = new RecordPoopingRequest();
+    recordPoopingRequest.authorName = authorName;
+    recordPoopingRequest.durationInMs = this.Time.totalMiliseconds;
+    recordPoopingRequest.wagePerHour = wagePerHour;
+
+    this.apiClient.recordPooping(recordPoopingRequest);
   }
 }
 

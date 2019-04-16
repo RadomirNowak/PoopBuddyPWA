@@ -9,6 +9,7 @@ namespace PoopBuddy.Web.ApiClient
     public interface IPoopingApiClient
     {
         Task<GetAllPoopingsResponse> GetAllPoopings();
+        Task AddPooping(AddPoopingRequest request);
     }
 
     internal class PoopingApiClient : IPoopingApiClient
@@ -24,6 +25,12 @@ namespace PoopBuddy.Web.ApiClient
         {
             var address = webAppConfiguration.PoopingApiAddress + "GetAll";
             return await HttpClientHelper.GetAsync<GetAllPoopingsResponse>(address);
+        }
+
+        public async Task AddPooping(AddPoopingRequest request)
+        {
+            var address = webAppConfiguration.PoopingApiAddress + "AddPooping";
+            await HttpClientHelper.PostAsync<AddPoopingRequest, object>(request, address);
         }
     }
 }

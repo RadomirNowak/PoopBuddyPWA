@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PoopBuddy.Shared.DTO;
 using PoopBuddy.Web.ApiClient;
+using PoopBuddy.Web.LocalDTO;
 
 namespace PoopBuddy.Web.Controller
 {
@@ -20,36 +23,21 @@ namespace PoopBuddy.Web.Controller
         {
             var poopings = poopingApiClient.GetAllPoopings();
 
-
             return Ok(await poopings);
+        }
 
-            //return Ok(new GetAllPoopingsResponse
-            //{
-            //    PoopingList = new List<PoopingDTO>
-            //    {
-            //        new PoopingDTO
-            //        {
-            //            AuthorName = "Test John",
-            //            Duration = TimeSpan.FromSeconds(6),
-            //            WagePerHour = 55,
-            //            ExternalId = Guid.NewGuid()
-            //        },
-            //        new PoopingDTO
-            //        {
-            //            AuthorName = "Jane",
-            //            Duration = TimeSpan.FromSeconds(12),
-            //            WagePerHour = 10,
-            //            ExternalId = Guid.NewGuid()
-            //        },
-            //        new PoopingDTO
-            //        {
-            //            AuthorName = "Janice",
-            //            Duration = TimeSpan.FromSeconds(64),
-            //            WagePerHour = 66,
-            //            ExternalId = Guid.NewGuid()
-            //        },
-            //    }
-            //});
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> RecordPooping(RecordPoopingRequest request)
+        {
+            var addPoopingRequest = new AddPoopingRequest
+            {
+                AuthorName = request.AuthorName,
+                WagePerHour = request.WagePerHour,
+                Duration = TimeSpan.FromMilliseconds(request.DurationInMs)
+            };
+            await poopingApiClient.AddPooping(addPoopingRequest);
+            return Ok();
         }
     }
 }
