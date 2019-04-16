@@ -1,0 +1,14 @@
+<div>
+  <form class="enterNameClass">
+    <mat-form-field>
+      <input matInput placeholder="Name" [formControl]="nameFormControl" [errorStateMatcher]="matcher"/>
+      <mat-hint>Enter your name, young Pooper</mat-hint>
+      <mat-error *ngIf="nameFormControl.hasError('name') && !nameFormControl.hasError('required')">
+        Please enter a valid name
+      </mat-error>
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
