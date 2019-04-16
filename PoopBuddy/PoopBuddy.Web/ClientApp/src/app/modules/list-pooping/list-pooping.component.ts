@@ -18,6 +18,7 @@ export class ListPoopingComponent implements OnInit {
 
   ngOnInit() {
     this.apiClient.getAllPoopings((response) => {
+      this.logger.debug("parsing response from getAllPoopings");
       response.poopingList.forEach((pooping) => {
         pooping.duration = new Time();
         pooping.duration.addMs(pooping.durationInMs);
@@ -30,6 +31,7 @@ export class ListPoopingComponent implements OnInit {
   private getBestPoopings(count: number, poopingList: Pooping[]): PoopingWithOrder[] {
     var unorderedPoopingList = poopingList;
     var orderedPoopingList = unorderedPoopingList.sort((left, right) => {
+
       if (this.calculateEarning(left.duration, left.wagePerHour) <
         this.calculateEarning(right.duration, right.wagePerHour))
         return -1;
@@ -51,6 +53,7 @@ export class ListPoopingComponent implements OnInit {
       newPooping.wagePerHour = orderedPoopingList[i].wagePerHour;
       newPooping.authorName = orderedPoopingList[i].authorName;
       newPooping.externalId = orderedPoopingList[i].externalId;
+      newPooping.earnings = this.calculateEarning(orderedPoopingList[i].duration, orderedPoopingList[i].wagePerHour);
       poopingsWithOrder.push(newPooping);
     }
 
@@ -67,4 +70,5 @@ export class ListPoopingComponent implements OnInit {
 
 export class PoopingWithOrder extends Pooping {
   position: number;
+  earnings: number;
 }

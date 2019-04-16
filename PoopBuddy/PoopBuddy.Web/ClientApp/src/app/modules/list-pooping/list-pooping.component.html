@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="totalEarnings">
       <mat-header-cell *matHeaderCellDef>Total earnings</mat-header-cell>
-      <mat-cell *matCellDef="let pooping">{{calculateEarning(pooping.duration, pooping.wagePerHour).toString() | slice:0:4}} $</mat-cell>
+      <mat-cell *matCellDef="let pooping">{{pooping.earnings.toString() | slice:0:4}} $</mat-cell>
     </ng-container>
 
 
