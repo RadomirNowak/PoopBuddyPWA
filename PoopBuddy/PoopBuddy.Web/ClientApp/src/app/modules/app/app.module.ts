@@ -13,6 +13,8 @@ import { AppMaterialModule } from './app-material.module';
 
 import { HttpClientHelper } from "../../shared/http/httpClientHelper";
 
+import { ConfigurationModule, ConfigurationService } from "../../shared/configuration/configurationService";
+
 // Components
 import { AppComponent } from "./components/app.component";
 import { ListPoopingComponent } from "../list-pooping/list-pooping.component";
@@ -41,7 +43,10 @@ import { TimeComponent } from "../../shared/time/component/time.component";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ConfigurationService,
+    ConfigurationModule.init()
+  ],
   bootstrap: [AppComponent, TimerComponent ]
 })
 export class AppModule { }

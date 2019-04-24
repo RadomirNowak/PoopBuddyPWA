@@ -1,5 +1,5 @@
 import { Environment } from "./environment";
 
 export const environment = {
-  type: Environment.Production
+  type: Environment.Staging
 };
