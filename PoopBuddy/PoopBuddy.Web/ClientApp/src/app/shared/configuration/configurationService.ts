@@ -2,7 +2,8 @@ import {Injectable, APP_INITIALIZER} from '@angular/core';
 import { HttpClientHelper } from "../http/httpClientHelper";
 import { Observable } from 'rxjs';
 
-import { environment, Environment } from "../../../environments/environment";
+import { environment } from "../../../environments/environment";
+import { Environment } from '../../../environments/environmentEnum';
 
 
 @Injectable()

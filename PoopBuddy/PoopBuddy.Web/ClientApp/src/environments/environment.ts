@@ -1,11 +1,7 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-export enum Environment {
-  Production = 0,
-  Staging = 1,
-  Development = 2
-}
+import { Environment } from './environmentEnum';
 
 export const environment = {
   type: Environment.Development

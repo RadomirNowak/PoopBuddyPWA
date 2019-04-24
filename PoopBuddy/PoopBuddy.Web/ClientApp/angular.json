@@ -92,8 +92,8 @@
             "production": {
               "browserTarget": "ClientApp:build:production"
             },
-            "Staging": {
-              "browserTarget": "ClientApp:build:production"
+            "staging": {
+              "browserTarget": "ClientApp:build:staging"
             } 
             
           }
