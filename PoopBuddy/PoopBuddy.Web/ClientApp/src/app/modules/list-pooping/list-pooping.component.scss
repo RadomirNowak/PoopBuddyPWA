@@ -1,48 +1,57 @@
-.pooping-list-table {
+:host {
+  width: 100%;
+}
+
+.list-wrapper {
+  display: flex;
   width: 100%;
 
-  mat-header-row { // headers
-    .mat-column-position {
-      flex: 0.2 1 15px;
+  .pooping-list-table {
+    width: 100%;
+
+    mat-header-row { // headers
+      .mat-column-position {
+        flex: 0.2 1 15px;
+      }
+
+      .mat-column-authorName {
+      }
+
+      .mat-column-poopingDuration {
+      }
+
+      .mat-column-wagePerHour {
+      }
+
+      .mat-column-totalEarnings, .mat-column-wagePerHour {
+        padding-right: 5px;
+        flex-direction: column;
+        align-items: center; // horizontal
+        justify-content: center; // vertical
+        text-align: center;
+      }
     }
 
-    .mat-column-authorName {
-    }
+    mat-row { // values
+      .mat-column-position {
+        flex: 0.2 1 15px;
+      }
 
-    .mat-column-poopingDuration {
-    }
+      .mat-column-authorName {
+      }
 
-    .mat-column-wagePerHour {
-    }
+      .mat-column-poopingDuration {
+      }
 
-    .mat-column-totalEarnings, .mat-column-wagePerHour {
-      padding-right: 5px;
-      flex-direction: column;
-      align-items: center; // horizontal
-      justify-content: center; // vertical
-      text-align: center;
-    }
-  }
+      .mat-column-wagePerHour {
+      }
 
-  mat-row { // values
-    .mat-column-position {
-      flex: 0.2 1 15px;
-    }
-
-    .mat-column-authorName {
-    }
-
-    .mat-column-poopingDuration {
-    }
-
-    .mat-column-wagePerHour {
-    }
-
-    .mat-column-totalEarnings, .mat-column-wagePerHour {
-      padding-right: 5px;
-      flex-direction: column;
-      align-items: center; // horizontal
-      justify-content: center; // vertical
+      .mat-column-totalEarnings, .mat-column-wagePerHour {
+        padding-right: 5px;
+        flex-direction: column;
+        align-items: center; // horizontal
+        justify-content: center; // vertical
+      }
     }
   }
 }

@@ -8,7 +8,7 @@
     .toolbar {
       padding: 0;
 
-      .toolbar-page-title-wrapper{
+      .toolbar-page-title-wrapper {
         padding: 0 16px;
         height: 100%;
         display: flex;
@@ -44,6 +44,13 @@
     flex-direction: column;
     height: 100%;
 
+    .content-inside{
+      height: 100%;
+      width: 100%;
+      display:flex;
+      justify-content: center;
+
+    }
     .content-top {
       width: 100%;
 
