@@ -62,7 +62,7 @@ export class ListPoopingComponent implements OnInit {
 
   calculateEarning(duration: Time, wagePerHour: number): number {
     var wagePerSecond = wagePerHour / 60 / 60;
-    this.logger.debug(`Calulating earning for ${duration.totalSeconds} seconds and ${wagePerSecond} wage`);
+    //this.logger.debug(`Calulating earning for ${duration.totalSeconds} seconds and ${wagePerSecond} wage`);
     return duration.totalSeconds * wagePerSecond;
   }
 

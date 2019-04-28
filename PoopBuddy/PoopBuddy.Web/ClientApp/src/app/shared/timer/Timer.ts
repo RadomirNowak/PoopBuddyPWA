@@ -1,5 +1,10 @@
 import {Time} from "../time/Time"
+import { Injectable } from '@angular/core';
 
+
+@Injectable({
+  providedIn: 'root',
+})
 export class Timer {
 
 
@@ -12,6 +17,10 @@ export class Timer {
 
   private timerInterval = 50;
   private interval;
+
+  public get isRunning(): boolean {
+    return this.interval;
+  }
 
   constructor() {
     //console.log("Timer constructor");

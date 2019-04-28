@@ -11,7 +11,6 @@ import { LocalApiClient } from "../../../core/api-client/localApiClient";
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent {
-  private timerHelper : Timer;
 
   public buttonStateEnum = ButtonState;
 
@@ -19,9 +18,13 @@ export class TimerComponent {
 
   public Time: Time;
 
-  constructor(private logger: NGXLogger, private apiClient: LocalApiClient) {
-    this.timerHelper = new Timer();
+  constructor(private logger: NGXLogger, private apiClient: LocalApiClient, private timerHelper: Timer) {
     this.Time = this.timerHelper.time;
+    if (this.timerHelper.isRunning)
+      this.buttonState = ButtonState.Started;
+    else {
+      this.buttonState = ButtonState.Neutral;
+    }
   }
 
 
