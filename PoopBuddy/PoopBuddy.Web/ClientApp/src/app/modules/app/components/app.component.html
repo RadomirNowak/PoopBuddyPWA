@@ -2,18 +2,28 @@
 <div class="page">
 
   <div class="menu-top">
-    <mat-toolbar color="primary">
-      <span>PoopBuddy</span>
+    <mat-toolbar class="toolbar"color="primary">
+      <div routerLink="/start" class="toolbar-page-title-wrapper">
+        <span>PoopBuddy</span>
+      </div>
+      <span class="toolbar-spacer"></span>
+      <div routerLink="/list" class="toolbar-icon-wrapper">
+        <mat-icon aria-label="Best poopers">list</mat-icon>
+      </div>
     </mat-toolbar>
   </div>
 
   <div class="content">
-    <div class="content-top">
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    
+    <!--<div class="content-top">
       <div class="pooping-list-container">
         <list-pooping></list-pooping>
       </div>
     </div>
-    
+
     <div class="content-bottom">
       <div class="nameInput-container">
         <start-pooping></start-pooping>
@@ -22,10 +32,10 @@
       <div class="buttons-container">
         <app-timer></app-timer>
       </div>
-    </div>
+    </div>-->
 
 
   </div>
 
-  <router-outlet></router-outlet>
+  
 </div>

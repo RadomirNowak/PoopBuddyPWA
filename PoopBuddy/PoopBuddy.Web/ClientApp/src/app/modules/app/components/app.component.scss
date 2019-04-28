@@ -3,6 +3,40 @@
   display: flex;
   flex-direction: column;
 
+
+  .menu-top {
+    .toolbar {
+      padding: 0;
+
+      .toolbar-page-title-wrapper{
+        padding: 0 16px;
+        height: 100%;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+      }
+
+      .toolbar-spacer {
+        flex: 1 1 auto;
+      }
+
+      .toolbar-icon-wrapper {
+        padding: 0 16px;
+        height: 100%;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        mat-icon {
+          width: 36px;
+          height: 36px;
+          font-size: 36px;
+        }
+      }
+    }
+  }
+
+
   .content {
     display: flex;
     justify-content: space-evenly;

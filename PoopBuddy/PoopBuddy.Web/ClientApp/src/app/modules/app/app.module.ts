@@ -17,6 +17,7 @@ import { ConfigurationModule, ConfigurationService } from "../../shared/configur
 
 // Components
 import { AppComponent } from "./components/app.component";
+import { StartPageComponent } from "../start-page/start-page.component";
 import { ListPoopingComponent } from "../list-pooping/list-pooping.component";
 import { StartPoopingComponent } from "../start-pooping/start-pooping.component";
 import { TimerComponent } from "../../shared/timer/component/timer.component";
@@ -25,6 +26,7 @@ import { TimeComponent } from "../../shared/time/component/time.component";
 @NgModule({
   declarations: [
     AppComponent,
+    StartPageComponent,
     ListPoopingComponent,
     StartPoopingComponent,
     TimerComponent,
@@ -47,6 +49,6 @@ import { TimeComponent } from "../../shared/time/component/time.component";
     ConfigurationService,
     ConfigurationModule.init()
   ],
-  bootstrap: [AppComponent, TimerComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
