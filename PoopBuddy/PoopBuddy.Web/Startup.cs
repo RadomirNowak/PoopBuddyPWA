@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.DependencyInjection;
+using WebEssentials.AspNetCore.Pwa;
 
 namespace PoopBuddy.Web
 {
@@ -12,6 +13,10 @@ namespace PoopBuddy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddProgressiveWebApp(new PwaOptions
+            {
+
+            });
             services.AddCors(options =>
             {
                 options.AddPolicy("InternalApiPolicy", builder=> builder.AllowAnyOrigin());
