@@ -3,14 +3,17 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from "@angular/fo
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RecordPoopingStateService } from "../../core/state/RecordPoopingStateService";
 import { NGXLogger } from "ngx-logger";
+import { MatDialogRef } from "@angular/material";
 
 @Component({
-  selector: 'start-pooping',
-  templateUrl: './start-pooping.component.html',
-  styleUrls: ['./start-pooping.component.scss']
+  selector: 'enter-pooper-data',
+  templateUrl: './enter-pooper-data.component.html',
+  styleUrls: ['./enter-pooper-data.component.scss']
 })
-export class StartPoopingComponent implements OnInit {
-  constructor(private logger: NGXLogger, private recordPoopingStateService: RecordPoopingStateService) {
+export class EnterPooperDataComponent implements OnInit {
+  constructor(private logger: NGXLogger,
+    private recordPoopingStateService: RecordPoopingStateService,
+    public dialogRef: MatDialogRef<EnterPooperDataComponent>) {
     
   }
 

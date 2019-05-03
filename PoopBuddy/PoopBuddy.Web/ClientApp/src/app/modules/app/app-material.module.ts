@@ -5,7 +5,8 @@ import {
   MatIconModule,
   MatTableModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 import 'hammerjs';
@@ -19,6 +20,7 @@ import 'hammerjs';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
   ],
   exports: [
     MatButtonModule,
@@ -28,6 +30,7 @@ import 'hammerjs';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
   ],
 })
 export class AppMaterialModule {}

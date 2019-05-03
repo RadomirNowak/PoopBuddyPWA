@@ -19,7 +19,7 @@ import { ConfigurationModule, ConfigurationService } from "../../shared/configur
 import { AppComponent } from "./components/app.component";
 import { StartPageComponent } from "../start-page/start-page.component";
 import { ListPoopingComponent } from "../list-pooping/list-pooping.component";
-import { StartPoopingComponent } from "../start-pooping/start-pooping.component";
+import { EnterPooperDataComponent } from "../enter-pooper-data/enter-pooper-data.component";
 import { TimerComponent } from "../../shared/timer/component/timer.component";
 import { TimeComponent } from "../../shared/time/component/time.component";
 
@@ -28,7 +28,7 @@ import { TimeComponent } from "../../shared/time/component/time.component";
     AppComponent,
     StartPageComponent,
     ListPoopingComponent,
-    StartPoopingComponent,
+    EnterPooperDataComponent,
     TimerComponent,
     TimeComponent
   ],
@@ -49,6 +49,7 @@ import { TimeComponent } from "../../shared/time/component/time.component";
     ConfigurationService,
     ConfigurationModule.init()
   ],
+  entryComponents: [EnterPooperDataComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
