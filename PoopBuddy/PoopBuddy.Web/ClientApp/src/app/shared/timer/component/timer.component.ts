@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { Timer } from "../Timer";
 import { Time } from "../../time/Time";
 import { RecordPoopingRequest } from "../../dto/RecordPoopingRequest";
 import { RecordPoopingStateService } from "../../../core/state/RecordPoopingStateService";
 import { LocalApiClient } from "../../../core/api-client/localApiClient";
+
 
 @Component({
   selector: 'app-timer',
@@ -22,7 +24,8 @@ export class TimerComponent {
   constructor(private logger: NGXLogger,
     private apiClient: LocalApiClient,
     private timerHelper: Timer,
-    private recordPoopingStateService: RecordPoopingStateService
+    private recordPoopingStateService: RecordPoopingStateService,
+    private router: Router
     ) {
     this.Time = this.timerHelper.time;
     if (this.timerHelper.isRunning)
@@ -73,7 +76,9 @@ export class TimerComponent {
     recordPoopingRequest.durationInMs = this.Time.totalMiliseconds;
     recordPoopingRequest.wagePerHour = wagePerHour;
 
-    this.apiClient.recordPooping(recordPoopingRequest);
+    this.apiClient.recordPooping(recordPoopingRequest, () => {
+      this.router.navigate(['/list']);
+    });
     this.stopPooping();
   }
 }

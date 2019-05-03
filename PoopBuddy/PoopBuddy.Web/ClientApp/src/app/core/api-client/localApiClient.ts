@@ -27,12 +27,12 @@ export class LocalApiClient {
       });
   }
 
-  public recordPooping(request: RecordPoopingRequest): void {
+  public recordPooping(request: RecordPoopingRequest, onResponse: () => void): void {
     var action = "recordPooping";
     var fullAddress = this.localApiAddress + action;
     this.logger.debug("About to call recordPooping on " + fullAddress);
 
-    this.httpClientHelper.post(request, fullAddress, () => {});
+    this.httpClientHelper.post(request, fullAddress, onResponse);
   }
 }
 
