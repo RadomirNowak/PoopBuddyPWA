@@ -1,4 +1,4 @@
 {
   "debugging": true,
-  "localApi.address": "http://poopbuddy.westeurope.cloudapp.azure.com/localApi/"
+  "localApi.address": "https://poopbuddy.westeurope.cloudapp.azure.com/localApi/"
 }
