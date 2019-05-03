@@ -18,10 +18,6 @@ export class EnterPooperDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nameFormControl.valueChanges.subscribe(() => {
-      this.logger.debug(this.nameFormControl.value);
-    this.recordPoopingStateService.setAuthorName(this.nameFormControl.value);
-    });
   }
 
   nameFormControl = new FormControl('', [
@@ -31,6 +27,12 @@ export class EnterPooperDataComponent implements OnInit {
   wagePerHourFormControl = new FormControl('', [
     Validators.required
   ]);
+
+  savePooperData(): void {
+    this.recordPoopingStateService.setAuthorName(this.nameFormControl.value);
+    this.recordPoopingStateService.setWagePerHour(this.wagePerHourFormControl.value);
+    this.dialogRef.close();
+  }
 
   matcher = new MyErrorStateMatcher();
 }

@@ -3,6 +3,7 @@ import { NGXLogger } from 'ngx-logger';
 import { Timer } from "../Timer";
 import { Time } from "../../time/Time";
 import { RecordPoopingRequest } from "../../dto/RecordPoopingRequest";
+import { RecordPoopingStateService } from "../../../core/state/RecordPoopingStateService";
 import { LocalApiClient } from "../../../core/api-client/localApiClient";
 import { MatDialog } from "@angular/material";
 import { EnterPooperDataComponent } from "../../../modules/enter-pooper-data/enter-pooper-data.component";
@@ -23,7 +24,8 @@ export class TimerComponent {
   constructor(private logger: NGXLogger,
     private apiClient: LocalApiClient,
     private timerHelper: Timer,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private recordPoopingStateService: RecordPoopingStateService
     ) {
     this.Time = this.timerHelper.time;
     if (this.timerHelper.isRunning)
@@ -57,19 +59,26 @@ export class TimerComponent {
   private startPooping() {
     this.logger.debug("start pooping");
     this.timerHelper.start();
-    this.dialog.open(EnterPooperDataComponent);
+    this.dialog.open(EnterPooperDataComponent, {disableClose: true});
     this.buttonState = ButtonState.Started;
+  }
+  private stopPooping() {
+    this.logger.debug("stop pooping");
+    this.timerHelper.reset();
+    this.Time = this.timerHelper.time;
+    this.buttonState = ButtonState.Stopped;
   }
 
   recordPooping() {
-    var authorName = "Pooping user"; // todo get this from user input
-    var wagePerHour = 10; // todo get this from user input
+    var authorName = this.recordPoopingStateService.recordedPoopingItem.authorName; // todo get this from user input
+    var wagePerHour = this.recordPoopingStateService.recordedPoopingItem.wagePerHour; // todo get this from user input
     var recordPoopingRequest = new RecordPoopingRequest();
     recordPoopingRequest.authorName = authorName;
     recordPoopingRequest.durationInMs = this.Time.totalMiliseconds;
     recordPoopingRequest.wagePerHour = wagePerHour;
 
     this.apiClient.recordPooping(recordPoopingRequest);
+    this.stopPooping();
   }
 }
 
