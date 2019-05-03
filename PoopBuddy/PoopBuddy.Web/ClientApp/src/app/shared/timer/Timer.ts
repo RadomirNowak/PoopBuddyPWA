@@ -1,6 +1,6 @@
 import {Time} from "../time/Time"
-import { Injectable } from '@angular/core';
-
+import { Injectable, ApplicationRef } from '@angular/core';
+import  * as WorkerTimers  from "worker-timers";
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,8 @@ export class Timer {
     return this.interval;
   }
 
-  constructor() {
+  constructor(
+    private changeDetector: ApplicationRef) {
     //console.log("Timer constructor");
     this.reset();
   }
@@ -43,7 +44,8 @@ export class Timer {
   }
 
   private clearAllIntervalAndTimeout() {
-    clearTimeout(this.interval);
+    WorkerTimers.clearTimeout(this.interval);
+    //clearTimeout(this.interval);
     this.interval = null;
   }
 
@@ -74,9 +76,17 @@ export class Timer {
 
   private setTimeout() {
     var that = this;
-    this.interval = setTimeout(() => {
-      this.updateTime(that);
-      this.setTimeout();
-    }, this.timerInterval);
+
+    //this.interval = setTimeout(() => {
+    //  this.updateTime(that);
+    //  this.setTimeout();
+    //}, this.timerInterval);
+
+    this.interval = WorkerTimers.setTimeout(() => {
+        this.updateTime(that);
+        this.setTimeout();
+        this.changeDetector.tick();
+      },
+      this.timerInterval);
   }
 }

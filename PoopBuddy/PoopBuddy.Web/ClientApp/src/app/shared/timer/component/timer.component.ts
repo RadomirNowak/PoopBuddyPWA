@@ -25,7 +25,7 @@ export class TimerComponent {
     private apiClient: LocalApiClient,
     private timerHelper: Timer,
     private recordPoopingStateService: RecordPoopingStateService,
-    private router: Router
+    private router: Router,
     ) {
     this.Time = this.timerHelper.time;
     if (this.timerHelper.isRunning)
