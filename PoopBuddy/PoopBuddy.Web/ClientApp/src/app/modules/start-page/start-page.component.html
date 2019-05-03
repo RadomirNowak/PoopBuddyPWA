@@ -1,4 +1,17 @@
 <div class="buttons-container">
-    <app-timer></app-timer>
+  <div *ngIf="processStarted === false; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+
+    <button class="start-pooping-button" (click)="startPooping()" mat-fab aria-label="Start pooping" layout-align="center center">
+      <mat-icon>attach_money</mat-icon>
+    </button>
+
+  </ng-template>
+  <ng-template #elseBlock>
+
+    <app-timer #timerComponent class="timer"></app-timer>
+
+  </ng-template>
+  
 </div>
 

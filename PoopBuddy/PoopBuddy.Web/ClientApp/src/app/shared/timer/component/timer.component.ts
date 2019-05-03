@@ -5,8 +5,6 @@ import { Time } from "../../time/Time";
 import { RecordPoopingRequest } from "../../dto/RecordPoopingRequest";
 import { RecordPoopingStateService } from "../../../core/state/RecordPoopingStateService";
 import { LocalApiClient } from "../../../core/api-client/localApiClient";
-import { MatDialog } from "@angular/material";
-import { EnterPooperDataComponent } from "../../../modules/enter-pooper-data/enter-pooper-data.component";
 
 @Component({
   selector: 'app-timer',
@@ -24,7 +22,6 @@ export class TimerComponent {
   constructor(private logger: NGXLogger,
     private apiClient: LocalApiClient,
     private timerHelper: Timer,
-    public dialog: MatDialog,
     private recordPoopingStateService: RecordPoopingStateService
     ) {
     this.Time = this.timerHelper.time;
@@ -59,7 +56,6 @@ export class TimerComponent {
   private startPooping() {
     this.logger.debug("start pooping");
     this.timerHelper.start();
-    this.dialog.open(EnterPooperDataComponent, {disableClose: true});
     this.buttonState = ButtonState.Started;
   }
   private stopPooping() {

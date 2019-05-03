@@ -1,14 +1,4 @@
-<div class="togglePoopingButton">
-  
-  <button (click)="togglePooping()" mat-fab aria-label="Start pooping button" layout-align="center center">
-    <mat-icon *ngIf='buttonState == buttonStateEnum.Neutral'>play_arrow</mat-icon>
-    <mat-icon *ngIf='buttonState == buttonStateEnum.Started'>pause</mat-icon>
-    <mat-icon *ngIf='buttonState == buttonStateEnum.Paused'>play_arrow</mat-icon>
-    <mat-icon *ngIf='buttonState == buttonStateEnum.Stopped'>play_arrow</mat-icon>
-  </button>
-</div>
-
-<app-time [time]="Time"></app-time>
+<app-time class="time-wrapper" [time]="Time"></app-time>
 
 <div class="recordPoopingButton">
   <button (click)="recordPooping()" mat-fab aria-label="Record pooping button" layout-align="center center">

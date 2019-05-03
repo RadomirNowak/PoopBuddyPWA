@@ -24,7 +24,7 @@ export class ListPoopingComponent implements OnInit {
         pooping.duration.addMs(pooping.durationInMs);
       });
 
-      this.poopingList = this.getBestPoopings(5, response.poopingList);
+      this.poopingList = this.getBestPoopings(999, response.poopingList);
     });
   }
 
