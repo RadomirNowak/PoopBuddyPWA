@@ -22,8 +22,12 @@ import { ListPoopingComponent } from "../list-pooping/list-pooping.component";
 import { EnterPooperDataComponent } from "../enter-pooper-data/enter-pooper-data.component";
 import { TimerComponent } from "../../shared/timer/component/timer.component";
 import { TimeComponent } from "../../shared/time/component/time.component";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from "../../../environments/environment";
+import { Environment } from "../../../environments/environmentEnum";
 
-@NgModule({
+@
+NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
@@ -37,13 +41,13 @@ import { TimeComponent } from "../../shared/time/component/time.component";
       level: NgxLoggerLevel.DEBUG
     }),
     BrowserModule,
-    
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.type !== Environment.Development })
   ],
   providers: [
     ConfigurationService,
