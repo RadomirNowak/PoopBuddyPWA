@@ -1,0 +1,3 @@
+<div class="mat-display-3">
+  <h1 *ngIf="show" class="mat-display-3">{{earningHelper.calculateEarning(this.time, this.wagePerHour).toString() | slice:0:4}} {{currencySign}}</h1>
+</div>

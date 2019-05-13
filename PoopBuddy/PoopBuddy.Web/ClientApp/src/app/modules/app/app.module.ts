@@ -22,6 +22,7 @@ import { ListPoopingComponent } from "../list-pooping/list-pooping.component";
 import { EnterPooperDataComponent } from "../enter-pooper-data/enter-pooper-data.component";
 import { TimerComponent } from "../../shared/timer/component/timer.component";
 import { TimeComponent } from "../../shared/time/component/time.component";
+import { EarningsComponent} from "../../shared/earnings/component/earnings.component";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from "../../../environments/environment";
 import { Environment } from "../../../environments/environmentEnum";
@@ -34,7 +35,8 @@ NgModule({
     ListPoopingComponent,
     EnterPooperDataComponent,
     TimerComponent,
-    TimeComponent
+    TimeComponent,
+    EarningsComponent
   ],
   imports: [
     LoggerModule.forRoot({

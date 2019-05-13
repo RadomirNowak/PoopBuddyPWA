@@ -3,6 +3,7 @@ import { Pooping } from '../../core/models/pooping';
 import { LocalApiClient } from "../../core/api-client/localApiClient";
 import { Time } from "../../shared/time/Time";
 import { NGXLogger } from "ngx-logger";
+import { EarningHelper } from "../../shared/earnings/earningHelper";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ListPoopingComponent implements OnInit {
   displayedColumns: string[] = ['position','authorName', 'poopingDuration', 'wagePerHour', 'totalEarnings'];
   poopingList: PoopingWithOrder[];
 
-  constructor(private apiClient: LocalApiClient, private logger: NGXLogger) {  }
+  constructor(private apiClient: LocalApiClient, private logger: NGXLogger, private earningHelper: EarningHelper) {  }
 
   ngOnInit() {
     this.apiClient.getAllPoopings((response) => {
@@ -32,11 +33,11 @@ export class ListPoopingComponent implements OnInit {
     var unorderedPoopingList = poopingList;
     var orderedPoopingList = unorderedPoopingList.sort((left, right) => {
 
-      if (this.calculateEarning(left.duration, left.wagePerHour) <
-        this.calculateEarning(right.duration, right.wagePerHour))
+      if (this.earningHelper.calculateEarning(left.duration, left.wagePerHour) <
+        this.earningHelper.calculateEarning(right.duration, right.wagePerHour))
         return -1;
-      if (this.calculateEarning(left.duration, left.wagePerHour) >
-        this.calculateEarning(right.duration, right.wagePerHour))
+      if (this.earningHelper.calculateEarning(left.duration, left.wagePerHour) >
+        this.earningHelper.calculateEarning(right.duration, right.wagePerHour))
         return 1;
       return 0;
     });
@@ -53,18 +54,14 @@ export class ListPoopingComponent implements OnInit {
       newPooping.wagePerHour = orderedPoopingList[i].wagePerHour;
       newPooping.authorName = orderedPoopingList[i].authorName;
       newPooping.externalId = orderedPoopingList[i].externalId;
-      newPooping.earnings = this.calculateEarning(orderedPoopingList[i].duration, orderedPoopingList[i].wagePerHour);
+      newPooping.earnings = this.earningHelper.calculateEarning(orderedPoopingList[i].duration, orderedPoopingList[i].wagePerHour);
       poopingsWithOrder.push(newPooping);
     }
 
     return poopingsWithOrder;
   }
 
-  calculateEarning(duration: Time, wagePerHour: number): number {
-    var wagePerSecond = wagePerHour / 60 / 60;
-    //this.logger.debug(`Calulating earning for ${duration.totalSeconds} seconds and ${wagePerSecond} wage`);
-    return duration.totalSeconds * wagePerSecond;
-  }
+
 
 }
 
