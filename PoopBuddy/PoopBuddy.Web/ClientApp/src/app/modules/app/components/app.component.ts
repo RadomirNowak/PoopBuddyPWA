@@ -17,22 +17,23 @@ export class AppComponent implements OnInit {
       this.swUpdate.available.subscribe(() => {
         window.location.reload();
       });
+
+      this.swPush.requestSubscription({
+          serverPublicKey: this.configuration.getString("Vapid.PublicKey")
+        })
+        .then((subscriber) => {
+          this.logger.debug(subscriber);
+          var request = new AddSubscriberRequest();
+          request.endpoint = subscriber.endpoint;
+          request.expirationTime = subscriber.expirationTime;
+          request.keys = {
+            auth: subscriber.getKey("auth")[0],
+            p256dh: subscriber.getKey("p256dh")[0]
+          };
+          this.localApi.addSubscriber(request, () => {});
+        })
+        .catch(err => this.logger.debug("Could not subscribe to notifications", err));
     }
-    var request = new AddSubscriberRequest();
-    this.localApi.addSubscriber(request, () => {});
-    this.swPush.requestSubscription({
-        serverPublicKey: this.configuration.getString("Vapid.PublicKey")
-      })
-      .then((subscriber) => {
-        this.logger.debug(subscriber);
-        var request = new AddSubscriberRequest();
-        request.endpoint = subscriber.endpoint;
-        request.expirationTime = subscriber.expirationTime;
-        request.auth = subscriber.getKey("auth")[0];
-        request.p256dh = subscriber.getKey("p256dh")[0];
-        this.localApi.addSubscriber(request, () => {});
-      })
-      .catch(err => this.logger.debug("Could not subscribe to notifications", err));
   }
 
   title = 'PoopBuddy';

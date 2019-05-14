@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PoopBuddy.Data.Logic;
@@ -27,7 +28,7 @@ namespace PoopBuddy.Test.PoopingDbTests
             {
                 PoopingList = objList
             });
-            var controller = new PoopingController(poopingLogic.Object);
+            var controller = new PoopingController(poopingLogic.Object, new Mock<ILogger<PoopingController>>().Object);
 
             //ACT
             var actionResult = controller.GetAll();
@@ -60,7 +61,7 @@ namespace PoopBuddy.Test.PoopingDbTests
             {
                 PoopingList = objList
             });
-            var controller = new PoopingController(poopingLogic.Object);
+            var controller = new PoopingController(poopingLogic.Object, new Mock<ILogger<PoopingController>>().Object);
 
             // ACT
             var actionResult = controller.GetAll();
@@ -82,7 +83,7 @@ namespace PoopBuddy.Test.PoopingDbTests
         [TestMethod]
         public void Add_One_Then_GetAll_Returns_Ok_Response()
         {
-            var controller = new PoopingController(PoopingLogic);
+            var controller = new PoopingController(PoopingLogic, new Mock<ILogger<PoopingController>>().Object);
             
             AssertGetAllPoopingsReturnsEmptyList(controller);
 

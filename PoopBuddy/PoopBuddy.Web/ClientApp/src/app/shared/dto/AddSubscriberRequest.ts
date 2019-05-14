@@ -1,6 +1,8 @@
 export class AddSubscriberRequest {
   endpoint: string;
   expirationTime: number;
-  p256dh: string;
-  auth: string;
+  keys: {
+    p256dh: string;
+    auth: string;
+  }
 }
