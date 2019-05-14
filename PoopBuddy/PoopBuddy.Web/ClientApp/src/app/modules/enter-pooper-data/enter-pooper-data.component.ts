@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from "@angular/forms";
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RecordPoopingStateService } from "../../core/state/RecordPoopingStateService";
+import { SendNotificationRequest } from "../../shared/dto/SendNotificationRequest";
+import { LocalApiClient } from "../../core/api-client/localApiClient";
 import { NGXLogger } from "ngx-logger";
 import { MatDialogRef } from "@angular/material";
 
@@ -13,7 +15,9 @@ import { MatDialogRef } from "@angular/material";
 export class EnterPooperDataComponent implements OnInit {
   constructor(private logger: NGXLogger,
     private recordPoopingStateService: RecordPoopingStateService,
-    public dialogRef: MatDialogRef<EnterPooperDataComponent>) {
+    public dialogRef: MatDialogRef<EnterPooperDataComponent>,
+    private localApi: LocalApiClient
+  ) {
     
   }
 
@@ -31,6 +35,9 @@ export class EnterPooperDataComponent implements OnInit {
   savePooperData(): void {
     this.recordPoopingStateService.setAuthorName(this.nameFormControl.value);
     this.recordPoopingStateService.setWagePerHour(this.wagePerHourFormControl.value);
+    var sendNotificationRequest = new SendNotificationRequest();
+    sendNotificationRequest.message = this.nameFormControl.value + " has started pooping!";
+    this.localApi.sendNotification(sendNotificationRequest, () => {});
     this.dialogRef.close();
   }
 

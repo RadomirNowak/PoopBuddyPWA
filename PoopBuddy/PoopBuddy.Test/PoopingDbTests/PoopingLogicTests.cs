@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PoopBuddy.Data.Logic;
-using PoopBuddy.Shared.DTO;
+using PoopBuddy.Shared.DTO.Pooping;
 
 namespace PoopBuddy.Test.PoopingDbTests
 {

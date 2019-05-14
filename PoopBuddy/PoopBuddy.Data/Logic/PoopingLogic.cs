@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using PoopBuddy.Data.Database.Entities;
 using PoopBuddy.Data.Database.Repositories;
-using PoopBuddy.Shared.DTO;
+using PoopBuddy.Shared.DTO.Pooping;
 
 namespace PoopBuddy.Data.Logic
 {

@@ -12,6 +12,8 @@ namespace PoopBuddy.Data
             ConfigureDb(services);
             services.AddSingleton<IPoopingLogic, PoopingLogic>();
             services.AddSingleton<IPoopingRepository, PoopingRepository>();
+            services.AddSingleton<INotificationLogic, NotificationLogic>();
+            services.AddSingleton<ISubscribersRepository, SubscribersRepository>();
 
         }
 

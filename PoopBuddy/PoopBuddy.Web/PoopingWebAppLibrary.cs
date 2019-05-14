@@ -15,6 +15,7 @@ namespace PoopBuddy.Web
         {
             services.AddSingleton<IWebAppConfiguration, WebAppConfiguration>();
             services.AddSingleton<IPoopingApiClient, PoopingApiClient>();
+            services.AddSingleton<INotificationApiClient, NotificationApiClient>();
         }
     }
 }

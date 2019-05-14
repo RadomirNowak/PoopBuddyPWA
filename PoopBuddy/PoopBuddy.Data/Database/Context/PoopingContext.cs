@@ -20,5 +20,6 @@ namespace PoopBuddy.Data.Database.Context
         }
 
         public DbSet<PoopingEntity> Poopings { get;set; }
+        public DbSet<SubscriberEntity> Subscribers { get;set; }
     }
 }

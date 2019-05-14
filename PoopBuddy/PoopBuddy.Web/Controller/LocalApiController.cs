@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PoopBuddy.Shared.DTO;
+using PoopBuddy.Shared.DTO.Notification;
+using PoopBuddy.Shared.DTO.Pooping;
 using PoopBuddy.Web.ApiClient;
 using PoopBuddy.Web.LocalDTO;
 
@@ -12,10 +13,12 @@ namespace PoopBuddy.Web.Controller
     public class LocalApiController : Microsoft.AspNetCore.Mvc.Controller
     {
         private readonly IPoopingApiClient poopingApiClient;
+        private readonly INotificationApiClient notificationApiClient;
 
-        public LocalApiController(IPoopingApiClient poopingApiClient)
+        public LocalApiController(IPoopingApiClient poopingApiClient, INotificationApiClient notificationApiClient)
         {
             this.poopingApiClient = poopingApiClient;
+            this.notificationApiClient = notificationApiClient;
         }
 
         [Route("[action]")]
@@ -37,6 +40,22 @@ namespace PoopBuddy.Web.Controller
                 Duration = TimeSpan.FromMilliseconds(request.DurationInMs)
             };
             await poopingApiClient.AddPooping(addPoopingRequest);
+            return Ok();
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> AddSubscriber(AddSubscriberRequest request)
+        {
+            await notificationApiClient.AddSubscriber(request);
+            return Ok();
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> SendNotification(SendNotificationRequest request)
+        {
+            await notificationApiClient.SendNotification(request);
             return Ok();
         }
     }

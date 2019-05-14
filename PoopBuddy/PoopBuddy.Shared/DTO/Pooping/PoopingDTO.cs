@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PoopBuddy.Shared.DTO
+namespace PoopBuddy.Shared.DTO.Pooping
 {
     public class PoopingDTO
     {

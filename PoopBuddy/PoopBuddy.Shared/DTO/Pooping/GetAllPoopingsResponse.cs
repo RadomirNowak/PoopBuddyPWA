@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PoopBuddy.Shared.DTO
+namespace PoopBuddy.Shared.DTO.Pooping
 {
     public class GetAllPoopingsResponse
     {

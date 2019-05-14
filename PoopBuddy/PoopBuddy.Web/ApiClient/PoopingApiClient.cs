@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PoopBuddy.Shared.DTO;
+using PoopBuddy.Shared.DTO.Pooping;
 using PoopBuddy.Shared.Http;
 using PoopBuddy.Web.Configuration;
 

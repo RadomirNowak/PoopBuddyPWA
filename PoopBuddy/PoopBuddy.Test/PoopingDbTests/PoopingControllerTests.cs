@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PoopBuddy.Data.Logic;
-using PoopBuddy.Shared.DTO;
+using PoopBuddy.Shared.DTO.Pooping;
 using PoopBuddy.WebApi.Controllers;
 
 namespace PoopBuddy.Test.PoopingDbTests

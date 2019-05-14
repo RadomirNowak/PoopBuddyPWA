@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PoopBuddy.Data;
 using PoopBuddy.Data.Logic;
-using PoopBuddy.Shared.DTO;
+using PoopBuddy.Shared.DTO.Pooping;
 
 namespace PoopBuddy.WebApi.Controllers
 {
