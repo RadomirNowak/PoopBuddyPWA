@@ -40,7 +40,7 @@ namespace PoopBuddy.Data.Logic
         public void SendNotification(SendNotificationRequest request)
         {
             logger.LogDebug("Sending notification to all subscribers");
-            var subscribers = repository.GetAll();
+            var subscribers = repository.GetAll().GroupBy(x=>x.P256Dh).Select(group=>group.First()); // todo HACK!! there shouldn't be duplicates in DB, fix this
             
             logger.LogDebug($"Sending notification to {subscribers.Count()} subscribers");
             foreach (var subscriber in subscribers)
