@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,7 +29,7 @@ namespace PoopBuddy.WebApi.Controllers
         [HttpPost]
         public IActionResult AddSubscriber(AddSubscriberRequest request)
         {
-            LogMethod();
+            LogMethod(Request.Body);
             notificationLogic.AddSubscriber(request);
             return Ok();
         }
@@ -36,14 +38,26 @@ namespace PoopBuddy.WebApi.Controllers
         [HttpPost]
         public IActionResult SendNotification(SendNotificationRequest request)
         {
-            LogMethod();
+            LogMethod(Request.Body);
             notificationLogic.SendNotification(request);
             return Ok();
         }
 
-        private void LogMethod([CallerMemberName] string action = "")
+        private void LogMethod(Stream body, [CallerMemberName] string action = "")
         {
             logger.LogDebug(action);
+            try
+            {
+                body.Seek(0, SeekOrigin.Begin);
+                using (StreamReader reader = new StreamReader(body, Encoding.UTF8))
+                {
+                    logger.LogDebug(reader.ReadToEnd());
+                }
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
         }
     }
 }

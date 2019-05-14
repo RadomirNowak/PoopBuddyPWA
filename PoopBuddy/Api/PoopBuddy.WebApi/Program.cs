@@ -16,12 +16,13 @@ namespace PoopBuddy.WebApi
     {
         public static void Main(string[] args)
         {
+            var timestamp = DateTime.Now.ToString("yyyyMMMMdd_HHmm");
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.File(
-                    @".\log.txt",
+                    $".\\Log\\log-{timestamp}.txt",
                     fileSizeLimitBytes: 1_000_000,
                     rollOnFileSizeLimit: true,
                     shared: true,

@@ -1,4 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +29,7 @@ namespace PoopBuddy.WebApi.Controllers
         [ProducesResponseType(typeof(GetAllPoopingsResponse), StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
-            LogMethod();
+            LogMethod(Request.Body);
             var result = poopingLogic.GetAll();
             return Ok(result);
         }
@@ -35,14 +38,26 @@ namespace PoopBuddy.WebApi.Controllers
         [HttpPost]
         public IActionResult AddPooping(AddPoopingRequest request)
         {
-            LogMethod();
+            LogMethod(Request.Body);
             poopingLogic.Add(request);
             return Ok();
         }
 
-        private void LogMethod([CallerMemberName] string action = "")
+        private void LogMethod(Stream body, [CallerMemberName] string action = "")
         {
             logger.LogDebug(action);
+            try
+            {
+                body.Seek(0, SeekOrigin.Begin);
+                using (StreamReader reader = new StreamReader(body, Encoding.UTF8))
+                {
+                    logger.LogDebug(reader.ReadToEnd());
+                }
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
         }
     }
 }
