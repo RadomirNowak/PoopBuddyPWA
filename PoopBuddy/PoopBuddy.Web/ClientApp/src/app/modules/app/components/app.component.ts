@@ -27,13 +27,17 @@ export class AppComponent implements OnInit {
           request.endpoint = subscriber.endpoint;
           request.expirationTime = subscriber.expirationTime;
           request.keys = {
-            auth: subscriber.getKey("auth")[0],
-            p256dh: subscriber.getKey("p256dh")[0]
+            auth: this.getStringFromArrayBuffer(subscriber.getKey("auth")),
+            p256dh: this.getStringFromArrayBuffer(subscriber.getKey("p256dh"))
           };
           this.localApi.addSubscriber(request, () => {});
         })
         .catch(err => this.logger.debug("Could not subscribe to notifications", err));
     }
+  }
+
+  private getStringFromArrayBuffer(buffer: ArrayBuffer): string {
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(buffer)));
   }
 
   title = 'PoopBuddy';

@@ -36,7 +36,7 @@ export class EnterPooperDataComponent implements OnInit {
     this.recordPoopingStateService.setAuthorName(this.nameFormControl.value);
     this.recordPoopingStateService.setWagePerHour(this.wagePerHourFormControl.value);
     var sendNotificationRequest = new SendNotificationRequest();
-    sendNotificationRequest.message = this.nameFormControl.value + " has started pooping!";
+    sendNotificationRequest.message = this.nameFormControl.value + " zaczął srać!";
     this.localApi.sendNotification(sendNotificationRequest, () => {});
     this.dialogRef.close();
   }
