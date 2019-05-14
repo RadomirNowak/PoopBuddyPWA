@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 using PoopBuddy.Data.Database.Entities;
 using PoopBuddy.Data.Database.Repositories;
 using PoopBuddy.Shared.DTO.Pooping;
+using ILogger = Serilog.ILogger;
 
 namespace PoopBuddy.Data.Logic
 {
@@ -17,7 +19,7 @@ namespace PoopBuddy.Data.Logic
     {
         private readonly IPoopingRepository poopingRepository;
 
-        public PoopingLogic(IPoopingRepository poopingRepository)
+        public PoopingLogic(IPoopingRepository poopingRepository, ILogger<PoopingLogic> logger)
         {
             this.poopingRepository = poopingRepository;
         }
