@@ -1,4 +1,6 @@
 {
   "debugging": true,
-  "localApi.address": "https://localhost:44321/localApi/"
+  "localApi.address": "https://localhost:44321/localApi/",
+  "Vapid.PublicKey": "BPJC0G2ZjJvF-eEdN5qiUVTTz4zBX3kC2k5KzyziRl2mKt9Tj5yulvAwNXfgr1B2CpNyX5p_M4UfS4bqxDiSMDE",
+  "Vapid.PrivateKey": "iZoBvDdIsFiAfabJGCIqmtjaAH7N4Nwp-mNwobNlkPY"
 }
